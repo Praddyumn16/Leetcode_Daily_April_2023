@@ -26,26 +26,24 @@ public:
             for(int i = 0 ; i < size ; i++) {
                 
                 auto curr = q.front();
-                long long idx = curr.second;
-                
-                if(i == 0)
-                    mini = idx;
-                if(i == size - 1)
-                    maxi = idx;
-                
                 q.pop();
+                
+                long long idx = curr.second;
                 
                 if(curr.first->left)
                     q.push({curr.first->left , 2 * idx + 1});
-                
                 if(curr.first->right)
                     q.push({curr.first->right , 2 * idx + 2});
                 
+                if(i == 0)
+                    mini = curr.second;
+                if(i == size - 1)
+                    maxi = curr.second;
             }
             
             ans = max(ans , maxi - mini);
         }
-
+        
         return ans + 1;
     }
 };
