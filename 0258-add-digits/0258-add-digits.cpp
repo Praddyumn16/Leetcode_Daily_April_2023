@@ -1,14 +1,17 @@
 class Solution {
 public:
     int addDigits(int num) {
-        while(num % 10 != num){
-            int temp = 0;
-            while(num) {
-                temp += num % 10;
-                num /= 10;
-            }
-            num = temp;
+        
+        string s = to_string(num);
+        
+        int curr = 0;
+        
+        for(int i = s.size() - 1 ; i >= 0 ; i--) {
+            curr += (s[i] - '0');
+            if(curr >= 10)
+                curr = (curr % 10) + (curr / 10);
         }
-        return num;
+        
+        return curr;
     }
 };
